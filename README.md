@@ -4,7 +4,7 @@
 
 Use Case
 - they say 2micron but the microscope may not have that resolution try
-- speed of traversal (execution time)
+- speed of traversal (execution time) and relative capture quality
 
 Occulus rift
 - proof of concept
