@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
+		"python.pythonPath": "/usr/bin/python3.6",
 		"python.autoComplete.extraPaths": [
 		],
 		"python.jediEnabled": false,

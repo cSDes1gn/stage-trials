@@ -10,3 +10,5 @@ Occulus rift
 - proof of concept
 - topographic reconstruction of 2D image
 - phase differences from different objects in 3D space
+
+see [Zaber notes](docs.)
