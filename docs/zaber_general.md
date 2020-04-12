@@ -18,13 +18,13 @@ The principle behind the internal working of both a brushless DC motor and a bru
 **brushed motors**: are driven by brushes which deliver current to the motor windings through commutator contacts. The windings are on the rotor and the magnets are on the stator (stationary part of motor). brushes create friction and can cause sparking which leads to unrelieable and inefficient operation.
 
 <p align="center">
-  <img src="img/brushed.gif"/>
+  <img src="/img/brushed.gif"/>
 </p>
 
 **brushless motors**: are electronically driven by a device known as a *controller* transforming DC current into 3-phase variable-frequency current and supplied motor coils successively to create rotating field. These motors do not use a physical switch to transmit current.  The windings are on the stator and the magnets are on the rotator eliminating the need for brushes.
 
 <p align="center">
-  <img src="img/brushless.gif"/>
+  <img src="/img/brushless.gif"/>
 </p>
 
 ## Closed-loop devices:

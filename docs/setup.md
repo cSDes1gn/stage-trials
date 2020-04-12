@@ -23,7 +23,7 @@ with Connection.open_serial_port("/dev/ttyACM0") as conn:
 ubuntu@ubuntu:~/stage-trials/src$ python3 trials.py
 Found [Device 1 SN: 64167 (X-MCB2) -> Connection 1 (ASCII Serial port: /dev/ttyACM0)] devices
 ```
-4. Verfiy `SN` matches name and ID of the connected controller. 
+4. Verfiy `Device SN` matches name and ID of the connected controller. 
 
 
 
