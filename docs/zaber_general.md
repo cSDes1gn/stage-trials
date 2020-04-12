@@ -1,4 +1,4 @@
-# Notes for Zaber Staging System
+# General Zaber Staging System Notes and Background
 
 ## Common terminology
 > **positioner**: any motorized device with moving mechanic such as a linear stage, rotational stage, or a stepper.
