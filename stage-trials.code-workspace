@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+		],
+		"python.jediEnabled": false,
+		"python.linting.enabled": true,
+		"python.linting.lintOnSave": true,
+		"python.linting.pylintUseMinimalCheckers": false,
+		"python.linting.pylintArgs": [
+			"--disable=C0303",
+			"--disable=C0326",
+		],
+		"window.zoomLevel": -1,
+		"editor.rulers": [100]
+	}
+  }
