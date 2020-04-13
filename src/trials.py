@@ -20,9 +20,19 @@ Unauthorized copying of this file, via any medium is strictly prohibited
 """
 from zaber_motion import Library 
 from zaber_motion.ascii import Connection
+import unittest
 
 Library.toggle_device_db_store(True)
 
-# open serial port
-with Connection.open_serial_port("/dev/ttyACM0") as conn:
-    pass
+
+
+class TestSuite(unittest.TestCase):
+    def test_upper(self):
+        pass
+
+
+if __name__ == "__main__":
+    # import interface module
+
+    # launch test cases
+    unittest.main()
