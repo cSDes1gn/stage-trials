@@ -17,14 +17,12 @@ Dependencies
  
 Copyright © 2020 Incuvers, Inc - All Rights Reserved
 Unauthorized copying of this file, via any medium is strictly prohibited
-Proprietary and confidential
 """
 from zaber_motion import Library 
 from zaber_motion.ascii import Connection
 
 Library.toggle_device_db_store(True)
 
-
 # open serial port
 with Connection.open_serial_port("/dev/ttyACM0") as conn:
-    print("Found {} devices".format(conn.detect_devices()))
+    pass
