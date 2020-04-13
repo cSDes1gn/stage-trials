@@ -4,8 +4,15 @@
 			"path": "."
 		}
 	],
+
 	"settings": {
-		"python.pythonPath": "/usr/bin/python3.6",
+		"windows": {
+			"python.pythonPath": "C:\\Users\\Christian S\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+		},
+		"osx": {
+			"python.pythonPath": "/usr/bin/python3.6",
+		},
+		
 		"python.autoComplete.extraPaths": [
 		],
 		"python.jediEnabled": false,
