@@ -13,7 +13,7 @@ For a comprehensive list of terms visit [Zaber's online glossary](https://www.za
 
 ## Motor Mechanics
 ### Brushed vs Brushless
-The principle behind the internal working of both a brushless DC motor and a brushed DC motor are essentially the same. When the motor windings become energized, a temporary magnetic field is created that repels and/or attracts against permanent magnets. This force is converted into shaft rotation, which allows the motor to do work. As the shaft rotates, electric current is routed to different sets of windings, maintaining electromotive repulsion/attraction, forcing the rotor to continually turn.
+The principle behind the internal working of both a brushless DC motor and a brushed DC motor are essentially the same. When the motor windings become energized, a temporary magnetic field is created that repels and/or attracts against permanent magnets. This force is converted into shaft rotation, which allows the motor to do work. As the shaft rotates, electric current is routed to different sets of windings, maintaining electromotive repulsion/attraction, forcing the rotor to continulaly turn.
 
 **brushed motors**: are driven by brushes which deliver current to the motor windings through commutator contacts. The windings are on the rotor and the magnets are on the stator (stationary part of motor). brushes create friction and can cause sparking which leads to unrelieable and inefficient operation.
 
