@@ -126,11 +126,15 @@ class AutomatedController():
         axis = self.device.get_axis(axis_id)
         axis.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
     
-    def diaxial_scan(self, disp1, disp2):
+    def diaxial_scan(self, disp1, disp2, wait_flag=False):
         axis1 = self.device.get_axis(1)
         axis2 = self.device.get_axis(2)
         axis1.move_absolute(disp1, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
         axis2.move_absolute(disp2, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
+        # for accuracy and precision testing
+        if wait_flag:
+            axis1.wait_until_idle()
+            axis2.wait_until_idle()
     
     def orbital_scan(self):
         raise NotImplementedError
@@ -138,8 +142,8 @@ class AutomatedController():
     def square_scan(self):
         raise NotImplementedError
 
-    def set_max(self, axis_id):
-        self.device.get_axis(axis_id).settings.set("maxspeed", 85,
+    def set_speed(self, axis_id, speed):
+        self.device.get_axis(axis_id).settings.set("maxspeed", speed,
             Units.VELOCITY_MILLIMETRES_PER_SECOND)
 
     def get_position(self, axis_id):
