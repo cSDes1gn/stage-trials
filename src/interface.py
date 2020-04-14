@@ -22,7 +22,6 @@ Unauthorized copying of this file, via any medium is strictly prohibited
 from zaber_motion import Library
 from zaber_motion import Units
 # from zaber_motion import Measurement
-from zaber_motion.ascii import Device
 from zaber_motion.ascii import Connection
 # for synchronized axis motion
 # A handle for a stream with this ID on the device. Streams provide a way to execute or store a
@@ -122,24 +121,16 @@ class AutomatedController():
         print("Found {} controller with id {}".format(self.device.name, self.device.serial_number))
         print("Homing all axes of {} peripheral device.. ".format(self.device.get_axis(1).peripheral_name))
         self.device.all_axes.home()
-        
-        # initialize motion stream
-        # print("Initializing motion stream..")
-        # num_streams = self.device.settings.get('stream.numstreams')
-        # print('Number of streams possible:', num_streams)
-        # self.mstream = self.device.get_stream(constants.STREAM_ID)
-        # # setup for live mode
-        # self.mstream.setup_live(1,2)
 
     def isoaxial_scan(self,axis_id, disp):
         axis = self.device.get_axis(axis_id)
         axis.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
     
-    def diaxial_scan(self, disp):
+    def diaxial_scan(self, disp1, disp2):
         axis1 = self.device.get_axis(1)
         axis2 = self.device.get_axis(2)
-        axis1.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
-        axis2.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
+        axis1.move_absolute(disp1, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
+        axis2.move_absolute(disp2, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
     
     def orbital_scan(self):
         raise NotImplementedError
