@@ -8,7 +8,7 @@ Repository: https://github.com/cSDes1gn/stage-trials
 README available in repository root
 Version: 1.0
 
-Using X-MCB2 controller
+Using X-MCB2 controller using Zaber Motion Library (ASCII)
 
 Dependencies
 ------------
@@ -21,14 +21,15 @@ Unauthorized copying of this file, via any medium is strictly prohibited
 
 from zaber_motion import Library
 from zaber_motion import Units
+# from zaber_motion import Measurement
 from zaber_motion.ascii import Device
 from zaber_motion.ascii import Connection
 # for synchronized axis motion
-from zaber_motion.ascii import Lockstep
 # A handle for a stream with this ID on the device. Streams provide a way to execute or store a
 # sequence of actions. Stream methods append actions to a queue which executes or stores actions 
 # in a first in, first out order.
-from zaber_motion.ascii import Stream
+# from zaber_motion.ascii import Stream
+# from zaber_motion.ascii import StreamMode
 
 import cv2
 
@@ -111,40 +112,57 @@ class VideoStream:
 class AutomatedController():
 
     def __init__(self):
+        # The next time the library needs the database it will contact the web-service and save
+        # the obtained data to the file system. When the library requires data later on, it uses the 
+        # saved files instead of the web-service.
+        Library.toggle_device_db_store(True)
         print("Initializing connection at " + constants.SERIAL_PORT)
         self.conn = Connection.open_serial_port(constants.SERIAL_PORT)
-        self.device_list = self.conn.detect_devices()
-        print("Found {} devices".format(len(self.device_list)))
-        for device in self.device_list:
-            print("Homing all axes of device with address {}.".format(device.device_address))
-            device.all_axes.home()
-            num_streams = device.settings.get('stream.numstreams')
-            print('Number of streams possible:', num_streams)
+        self.device = self.conn.detect_devices()[-1]
+        print("Found {} controller with id {}".format(self.device.name, self.device.serial_number))
+        print("Homing all axes of {} peripheral device.. ".format(self.device.get_axis(1).peripheral_name))
+        self.device.all_axes.home()
         
+        # initialize motion stream
+        # print("Initializing motion stream..")
+        # num_streams = self.device.settings.get('stream.numstreams')
+        # print('Number of streams possible:', num_streams)
+        # self.mstream = self.device.get_stream(constants.STREAM_ID)
+        # # setup for live mode
+        # self.mstream.setup_live(1,2)
 
-    def motion(self):
-        axis1 = self.device_list[-1].get_axis(1)
-        axis2 = self.device_list[-1].get_axis(2)
-        axis1.move_absolute(3, Units.LENGTH_CENTIMETRES, wait_until_idle=False)
-        axis2.move_absolute(3, Units.LENGTH_CENTIMETRES, wait_until_idle=False)
-        axis1.wait_until_idle()
-        axis2.wait_until_idle()
+    def isoaxial_scan(self,axis_id, disp):
+        axis = self.device.get_axis(axis_id)
+        axis.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
     
+    def diaxial_scan(self, disp):
+        axis1 = self.device.get_axis(1)
+        axis2 = self.device.get_axis(2)
+        axis1.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
+        axis2.move_absolute(disp, Units.LENGTH_MILLIMETRES, wait_until_idle=False)
+    
+    def orbital_scan(self):
+        raise NotImplementedError
+
+    def square_scan(self):
+        raise NotImplementedError
+
+    def set_max(self, axis_id):
+        self.device.get_axis(axis_id).settings.set("maxspeed", 85,
+            Units.VELOCITY_MILLIMETRES_PER_SECOND)
+
+    def get_position(self, axis_id):
+        return self.device.get_axis(axis_id).get_position(Units.LENGTH_MILLIMETRES)
+
     def shutdown(self):
+        # home
+        self.device.all_axes.home()
         # shutdown connection
         self.conn.close()
 
 
 if __name__ == "__main__":
-    # The next time the library needs the database it will contact the web-service and save
-    # the obtained data to the file system. When the library requires data later on, it uses the 
-    # saved files instead of the web-service.
-    Library.toggle_device_db_store(True)
-
-    # open serial port
-    # actrl = AutomatedController()
-    # actrl.motion()
-    # actrl.shutdown()  
-    microscope = VideoStream()
-    microscope.capture()
     # show the output image
+    # microscope = VideoStream()
+    # microscope.capture()
+    pass
