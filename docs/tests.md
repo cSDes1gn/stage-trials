@@ -53,7 +53,11 @@ For the first test I isolated each stepper and configured the motors to a speed 
 |----------|--------------------|
 | 0.00115  | 0.03393            |
 
-The individual steppers do not meet the validated claims of 85 mm/s. I predict the speed they are referring to is the maximum instantaneous velocity and not its aggregate speed. Judging by audio queues, the motors seem to achieve its peak midway through the execution but slows back down as it approaches the specified distance. This is probably in place to reduce the stress on the motors. Stepper motors are susceptible to performance wear as they have a larger number of motor step positions (which allows for increased precision)so this makes sense. I ran some tests for shorter intervals to backup my prediction and saw diminishing returns in speed performance as the length decreased.
+The individual steppers do not meet the validated claims of 85 mm/s. I predict the speed they are referring to is the maximum instantaneous velocity and not its aggregate speed. I checked the definition for 'maximum speed' online and it yielded this:
+
+>[**Maximum Speed:**](https://www.zaber.com/glossary) The maximum speed at which a motorized device can move. Note that the speed is a function of load and the maximum speed can only be achieved at low loads.	(mm/s, "/s)
+
+However, judging by audio queues, the motors seem to achieve its peak midway through the execution but slows back down as it approaches the specified distance. This is probably in place to reduce the stress on the motors. Stepper motors are susceptible to performance wear as they have a larger number of motor step positions (which allows for increased precision)so this makes sense. I ran some tests for shorter intervals to backup my prediction and saw diminishing returns in speed performance as the length decreased.
 
 ### Test Case 2: Di-axial validation
 For the second test I scheduled execution for both steppers simultaneously. All the measurement setup was the same as described in Test Case 1.
