@@ -2,6 +2,9 @@
 
 ## Background
 
+The abstracted specification for this model (pulled from [here](https://www.zaber.com/products/scanning-microscope-stages/ASR/details/ASR100B120B-T3)) are shown in the table below:
+
+
 | ASR100B120B-T3 Relevant Properties  | Specification 
 |-------------------------------------|-------------------|
 | Microstep Size (Default Resolution) | 0.15625 µm        |
