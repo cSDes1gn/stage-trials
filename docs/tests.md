@@ -22,15 +22,28 @@ The abstracted specification for this model (pulled from [here](https://www.zabe
 
 > **repeatability:** The maximum deviation in actual position when repeatedly instructing a device to move to a target position 100 times, approaching from the same direction every time, under stable thermal conditions.
 
-## Stage Accuracy Tests (Unidirectional Accuracy)
-> How accurately can the stage position itself over any given point?
+## Stage Accuracy (Unidirectional Accuracy) and Precision Tests (Repeatability)
+> Unidirectional accuracy claim of > 40μm
 
-STUDY NOT CONDUCTED
-
-## Stage Precision Tests (Repeatability)
 > Repeatability claim of > 2μm
 
-STUDY NOT CONDUCTED
+The range of motion in the X and Y direction is described in the table above from the online specification. The test involves randomly selecting coordinate pairs of floats in mm to a precision of 3 decimal places. This corresponds to enabling movement to each µm on the coordinate grid. The device is executed to move to each coordinate on the plane then the stage position is measured by the encoders to verify its actual position. The `axis` objects `get_position()` method returns a float to 6 decimal places which is more than sufficient to validate both the claims.
+
+The test was run over 100 randomly selected coordinate pairs. The absolute value of the difference between the requested and expected coordinates were seperated by the x and y motors running at half of their maximum graded speed at 42.5 mm/s. The analytics are compiled below:
+
+|   | Standard Deviation | Variance  | Mean (mm) |
+|---|--------------------|-----------|-----------|
+| x | 2.393e-05          | 5.725e-10 | 2.393e-05 |
+| y | 2.143e-05          | 4.593e-10 | 3.500e-05 |
+
+Furthermore, to validate the claims hold while operating at its maximum speed rating of 85 mm/s we ran the same test case over a new 100 trials and compiled the results:
+
+|   | Standard Deviation | Variance  | Mean (mm) |
+|---|--------------------|-----------|-----------|
+| x | 2.324e-05          | 5.401e-10 | 2.324e-05 |
+| y | 2.281e-05          | 5.204e-10 | 3.688e-05 |
+
+The steppers both far exceed the claims based on the collected data. Over the 100 trials for both speed ratings all test cases passed both the repeatability and accuracy specifications. Furthermore sinc the results for both the 42.5mm/s and the 85mm/s test are very similar we can conclude that the accuracy and repeatability tests continue to pass while operating variable speeds.
 
 ## Stage Motion Execution Time
 > **Isoaxial Measurements:** Measure velocity vector for a basic linear motor command at maximum specification.
